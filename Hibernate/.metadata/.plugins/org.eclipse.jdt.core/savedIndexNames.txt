@@ -1,0 +1,4 @@
+INDEX VERSION 1.131+C:\Users\samat\OneDrive\Documentos\Programação\ProjetosJava Nelio Alves\ws-sts\.metadata\.plugins\org.eclipse.jdt.core
+1873317397.index
+2508797071.index
+1865797976.index

@@ -1,0 +1,88 @@
+package aplicacao;
+
+import java.util.List;
+
+import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
+import javax.persistence.Persistence;
+import javax.persistence.TypedQuery;
+
+import dominio.Pessoa;
+
+public class Programa {
+
+	public static void main(String[] args) {
+		
+		Pessoa p1 = new Pessoa(null, "Carlos da Silva", "carlos@gmail.com");
+		Pessoa p2 = new Pessoa(null, "Joaquim Torres", "joaquim@gmail.com");
+		Pessoa p3 = new Pessoa(null, "Ana Maria", "maria@gmail.com");
+	
+		EntityManagerFactory emf = Persistence.createEntityManagerFactory("exemplo-jpa"); //FABRICA DE INSTANCIAS EntityManager
+		EntityManager em = emf.createEntityManager(); //iNSTANCIAS EntityManager PARA A APLICAÇÃO SE COMUNICAR COM O BD
+	
+		/*
+		//FIND
+		//Pessoa p = em.find(Pessoa.class, 1);
+		
+		//INSERT
+		em.getTransaction().begin(); //utiliza quando não será realizado apenas uma leitura de dados(INICIA UMA TRANSAÇÃO COM BD)
+		em.persist(p1); //pega o objeto e salva no BD
+		em.getTransaction().commit(); //confirma a alteração
+		
+		//DELETE
+		Pessoa p = em.find(Pessoa.class, 2); //busca um objeto no banco de dados
+		em.getTransaction().begin();
+		em.remove(p); //remove o objeto do BD
+		em.getTransaction().commit();
+
+		//MODIFY
+		Pessoa p = new Pessoa();
+		p.setId(1);
+		p.setName("Leonardin");
+		em.getTransaction().begin();
+		em.merge(p);
+		em.getTransaction().commit();
+		
+		*///FIND LIST
+		String jpql = "select b from Pessoa b";
+		TypedQuery<Pessoa> tq = em.createQuery(jpql, Pessoa.class);
+		List<Pessoa> ps = tq.getResultList();
+		 
+		for(Pessoa p : ps) {
+			System.out.println(p.getName());
+		}
+		/*
+		
+		
+		//FIND FOR ID
+		String jpql = "select c from Pessoa c WHERE id = :idP";
+		TypedQuery<Pessoa> tq = em.createQuery(jpql, Pessoa.class)
+				.setParameter("idP", 1);
+		List<Pessoa> ps = tq.getResultList();
+		
+		for(Pessoa p : ps) {
+			System.out.println(p.getName());
+		}
+		
+		//REMOVE BY WHERE
+		em.getTransaction().begin();
+		em.createQuery("delete from Pessoa c WHERE id = :idP")
+		.setParameter("idP", 2) 
+		.executeUpdate();
+		em.getTransaction().commit();
+		
+		
+		//UPDATE BY WHERE
+		em.getTransaction().begin();
+		em.createQuery("update Pessoa c set name = 'Luiz' WHERE id = :idP")
+		.setParameter("idP", 1)
+		.executeUpdate();
+		em.getTransaction().commit();
+		
+		*/
+		
+		em.close(); //FECHA A TRANSAÇÃO COM O BD
+		emf.close();
+		
+	}
+}

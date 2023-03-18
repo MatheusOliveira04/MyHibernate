@@ -1,0 +1,62 @@
+package aplicacao;
+
+import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
+import javax.persistence.Persistence;
+
+import dominio.Pessoa;
+
+public class Programa {
+
+	public static void main(String[] args) {
+		
+		Pessoa p1 = new Pessoa(null, "Carlos da Silva", "carlos@gmail.com");
+		Pessoa p2 = new Pessoa(null, "Joaquim Torres", "joaquim@gmail.com");
+		Pessoa p3 = new Pessoa(null, "Ana Maria", "maria@gmail.com");
+	
+		/*EntityManagerFactory emf = Persistence.createEntityManagerFactory("exemplo-jpa"); //FABRICA DE INSTANCIAS EntityManager
+		EntityManager em = emf.createEntityManager(); //iNSTANCIAS EntityManager PARA A APLICAÇÃO SE COMUNICAR COM O BD
+	
+		
+		//FIND
+		//Pessoa p = em.find(Pessoa.class, 1);
+		
+		//INSERT
+		em.getTransaction().begin(); //utiliza quando não será realizado apenas uma leitura de dados(INICIA UMA TRANSAÇÃO COM BD)
+		em.persist(p1); //pega o objeto e salva no BD
+		em.getTransaction().commit(); //confirma a alteração
+		
+		//DELETE
+		Pessoa p = em.find(Pessoa.class, 2); //busca um objeto no banco de dados
+		em.getTransaction().begin();
+		em.remove(p); //remove o objeto do BD
+		em.getTransaction().commit();
+
+		//MODIFY
+		Pessoa p = new Pessoa();
+		p.setId(1);
+		p.setName("Leonardin");
+		em.getTransaction().begin();
+		em.merge(p);
+		em.getTransaction().commit();
+		
+		System.out.println("pronto");
+		em.close(); //FECHA A TRANSAÇÃO COM O BD
+		emf.close(); */
+
+		
+		EntityManagerFactory emf = Persistence.createEntityManagerFactory("exemplo-jpa");
+		EntityManager em = emf.createEntityManager();
+		
+		Pessoa pp = new Pessoa();
+		pp.setId(3);
+		pp.setName("EosGuris");
+		em.getTransaction().begin();
+		em.merge(pp);
+		em.getTransaction().commit();
+		
+		em.close();
+		emf.close();
+	}
+
+}

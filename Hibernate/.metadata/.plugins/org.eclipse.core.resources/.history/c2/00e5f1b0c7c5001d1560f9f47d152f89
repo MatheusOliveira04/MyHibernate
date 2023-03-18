@@ -1,0 +1,14 @@
+package dao;
+
+import java.util.List;
+
+import dominio.Pessoa;
+
+public interface PessoaDao{
+
+	void findById(Integer id);
+	void deleteById(Integer id);
+	void insert(Pessoa pessoa);
+	void update(Pessoa pessoa);
+	List<Pessoa> findAll();
+}
